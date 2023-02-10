@@ -47,6 +47,9 @@ cmake ..
 make -j4
 sudo make install
 
+
+
+
 #!/bin/bash
 #
 # Script to compile and install BladeRF & GNURadio 3.7 + CubicSDR + GQRX + URH + Soapy Modules
