@@ -1,3 +1,13 @@
+
+Ubuntu 22.04 LTS
+sudo add-apt-repository ppa:nuandllc/bladerf
+sudo apt-get update
+sudo apt-get install -y bladerf libbladerf-dev bladerf-firmware-fx3
+sudo apt-get install bladerf-fpga-hostedxa4    
+
+sudo apt-get install gnuradio
+
+
 #!/bin/bash
 #
 # Script to compile and install BladeRF & GNURadio 3.7 + CubicSDR + GQRX + URH + Soapy Modules
