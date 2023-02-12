@@ -3,7 +3,7 @@
 # Write to SD Card
 # Install SC card, plug in, and follow prompts to start up the Pi
 # Open the command line and enter the following
-# git clone git@github.com:andrew153d/Rpi-bladeRF-GNUradio.git
+# git clone httos://github.com/andrew153d/Rpi-bladeRF-GNUradio.git
 # cd Rpi-bladeRF-GNUradio
 # chmod +x setup.sh
 # ./setup.sh
