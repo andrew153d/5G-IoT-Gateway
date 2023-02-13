@@ -3,6 +3,7 @@
 # Write to SD Card
 # Install SC card, plug in, and follow prompts to start up the Pi
 # Open the command line and enter the following
+# sudo apt-get install git
 # git clone httos://github.com/andrew153d/Rpi-bladeRF-GNUradio.git
 # cd Rpi-bladeRF-GNUradio
 # chmod +x setup.sh
@@ -16,9 +17,11 @@ sudo add-apt-repository ppa:nuandllc/bladerf
 sudo apt-get update
 
 
-mkdir blade
-sudo wget -P blade/ https://www.nuand.com/fx3/bladeRF_fw_latest.img
-sudo wget -P blade/ https://www.nuand.com/fpga/hostedxA4-latest.rbf
+mkdir ~/blade
+sudo wget -P ~/blade/ https://www.nuand.com/fx3/bladeRF_fw_latest.img
+sudo wget -P ~/blade/ https://www.nuand.com/fpga/hostedxA4-latest.rbf
+
+
 
 sudo apt-get install -y libusb-1.0-0-dev libusb-1.0-0 git cmake g++ \
    libboost-all-dev libgmp-dev swig python3-numpy python3-matplotlib \
@@ -35,7 +38,8 @@ sudo apt install gnuradio -y
    
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
-sudo apt-get install -y bladerf libbladerf-dev
+sudo apt-get install -y bladerf libbladerf-dev bladerf-firmware-fx3
+sudo apt-get install bladerf-fpga-hostedxa4    
 
 mkdir ~/gr
 
