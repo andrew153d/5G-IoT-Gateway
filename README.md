@@ -1,4 +1,4 @@
-# Rpi-bladeRF-GNUradio
+# Raspberry Pi-BladeRF-GNUradio
 An install script to install Gnu Radio and BladeRF on a Raspberry Pi
 
 ## Directions
