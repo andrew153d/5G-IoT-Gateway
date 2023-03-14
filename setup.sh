@@ -13,6 +13,8 @@
 
 sudo apt-get update && sudo apt-get upgrade -y
 
+sudo apt install ssh -y
+
 sudo add-apt-repository ppa:nuandllc/bladerf
 sudo apt-get update
 
