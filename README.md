@@ -8,7 +8,7 @@ An install script to install Gnu Radio and BladeRF on a Raspberry Pi
 * Install SD card, plug in, and follow prompts to start up the Pi
 * Open the command line and enter the following
 * sudo apt-get install git
-* git clone httos://github.com/andrew153d/Rpi-bladeRF-GNUradio.git
+* git clone https://github.com/andrew153d/Rpi-bladeRF-GNUradio.git
 * cd Rpi-bladeRF-GNUradio
 * chmod +x setup.sh
 * ./setup.sh
