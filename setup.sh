@@ -71,3 +71,14 @@ sudo make install && sudo ldconfig
 
 sudo apt update
 
+
+wget https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
+sudo apt-get install python3-pip
+sudo pip3 install pyserial
+sudo apt-get install unzip
+unzip  SIM820X_RNDIS.zip
+sudo chmod 777 SIM820X_RNDIS.py
+sudo python3 SIM820X_RNDIS.py
+
+sudo apt-get install minicom
+
