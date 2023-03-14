@@ -30,7 +30,7 @@ sudo apt-get install -y libusb-1.0-0-dev libusb-1.0-0 git cmake g++ \
    liblog4cpp5-dev libzmq3-dev python3-yaml python3-click python3-click-plugins \
    python3-zmq python3-scipy python3-gi python3-gi-cairo gir1.2-gtk-3.0 \
    libcodec2-dev libgsm1-dev libqt5svg5-dev libpulse-dev pulseaudio alsa-base \
-   libasound2 libasound2-dev pybind11-dev libsndfile-dev
+   libasound2 libasound2-dev pybind11-dev libsndfile-dev -y
    
 sudo add-apt-repository ppa:gnuradio/gnuradio-releases -y
 sudo apt update
@@ -38,8 +38,8 @@ sudo apt install gnuradio -y
    
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
-sudo apt-get install -y bladerf libbladerf-dev bladerf-firmware-fx3
-sudo apt-get install bladerf-fpga-hostedxa4    
+sudo apt-get install -y bladerf libbladerf-dev bladerf-firmware-fx3 -y
+sudo apt-get install bladerf-fpga-hostedxa4 -y   
 
 mkdir ~/gr
 
@@ -73,9 +73,9 @@ sudo apt update
 
 
 wget https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
-sudo apt-get install python3-pip
-sudo pip3 install pyserial
-sudo apt-get install unzip
+sudo apt-get install python3-pip -y
+sudo pip3 install pyserial -y
+sudo apt-get install unzip -y
 unzip  SIM820X_RNDIS.zip
 sudo chmod 777 SIM820X_RNDIS.py
 sudo python3 SIM820X_RNDIS.py
