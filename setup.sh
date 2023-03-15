@@ -1,7 +1,7 @@
 # Usr RPI Imager
 #Instal Ubuntu Desktop 22.04.1 LTS (64-Bit)
 # Write to SD Card
-# Install SC card, plug in, and follow prompts to start up the Pi
+# Install SD card, plug in, and follow prompts to start up the Pi
 # Open the command line and enter the following
 # sudo apt-get install git
 # git clone https://github.com/andrew153d/Rpi-bladeRF-GNUradio.git
@@ -10,6 +10,7 @@
 # ./setup.sh
 # You will have to hit enter and say yes to a couple prompts
 
+#follow these instructions to install vncserver
 #https://www.youtube.com/watch?v=3K1hUwxxYek
 
 
