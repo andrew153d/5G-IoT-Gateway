@@ -84,5 +84,6 @@ unzip  SIM820X_RNDIS.zip
 sudo chmod 777 SIM820X_RNDIS.py
 sudo python3 SIM820X_RNDIS.py
 
-sudo apt-get install minicom
+sudo apt-get install minicom -y
+
 
