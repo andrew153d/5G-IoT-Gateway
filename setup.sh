@@ -10,6 +10,8 @@
 # ./setup.sh
 # You will have to hit enter and say yes to a couple prompts
 
+#https://www.youtube.com/watch?v=3K1hUwxxYek
+
 
 sudo apt-get update && sudo apt-get upgrade -y
 
