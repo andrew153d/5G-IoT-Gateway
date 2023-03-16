@@ -35,7 +35,7 @@ sudo apt-get install -y libusb-1.0-0-dev libusb-1.0-0 git cmake g++ \
    liblog4cpp5-dev libzmq3-dev python3-yaml python3-click python3-click-plugins \
    python3-zmq python3-scipy python3-gi python3-gi-cairo gir1.2-gtk-3.0 \
    libcodec2-dev libgsm1-dev libqt5svg5-dev libpulse-dev pulseaudio alsa-base \
-   libasound2 libasound2-dev pybind11-dev libsndfile-dev -y
+   libasound2 libasound2-dev pybind11-dev libsndfile-dev net-tools -y
    
 sudo add-apt-repository ppa:gnuradio/gnuradio-releases -y
 sudo apt update
