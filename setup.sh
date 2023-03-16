@@ -76,6 +76,8 @@ sudo make install && sudo ldconfig
 
 sudo apt update
 
+# ---- General tutorial ---- https://www.waveshare.com/wiki/SIM8200EA-M2_5G_HAT
+# ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
 
 wget https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
 sudo apt-get install python3-pip -y
@@ -85,6 +87,6 @@ unzip  SIM820X_RNDIS.zip
 sudo chmod 777 SIM820X_RNDIS.py
 sudo python3 SIM820X_RNDIS.py
 
-sudo apt-get install minicom -y
+sudo apt-get install minicom net-tools speedtest-cli -y
 
 
