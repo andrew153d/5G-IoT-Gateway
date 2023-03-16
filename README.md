@@ -1,4 +1,4 @@
-# Raspberry Pi-BladeRF-GNUradio
+# 5G IoT Gateway with RF Measurement Capability
 An install script to install Gnu Radio and BladeRF on a Raspberry Pi
 
 ## Directions
