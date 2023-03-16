@@ -80,7 +80,7 @@ sudo apt update
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
 
 cd ~/
-wget https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
+wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
 sudo apt-get install python3-pip -y
 sudo pip3 install pyserial -y
 sudo apt-get install unzip -y
