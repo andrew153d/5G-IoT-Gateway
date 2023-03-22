@@ -90,4 +90,9 @@ sudo python3 SIM820X_RNDIS.py
 
 sudo apt-get install minicom net-tools speedtest-cli -y
 
+# tools for web app
+pip install Flask
+pip install flask-wtf
+
+sudo apt update
 
