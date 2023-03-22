@@ -15,11 +15,11 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-12 header">
+      <div onclick="getNetwork()" class="col-12 header" id = "networkStats">
         <p> Network Status: Connected</p>
         <p> Latency: 102ms</p>
         <p> Upload: 5.29 Mbps</p>
-        <p> Download: 44.42 Mbps</p>
+        <p> Download: {{ msps }} Mbps</p>
       </div>
     </div>
 
@@ -44,15 +44,15 @@
           <button onclick="doSomething()" id="band1" class="bandBtn"> n71: </button>
         </div>
         <div class="col-md-6 col-xs-6">
-          <button onclick="doSomething()" class="bandBtn">n77:</button>
+          <button onclick="doSomething()" id="band2" class="bandBtn">n77:</button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 col-xs-6">
-          <button class="bandBtn">n78: </button>
+          <button class="bandBtn" id="band3">n78: </button>
         </div>
         <div class="col-md-6 col-xs-6">
-          <button class="bandBtn">n79: </button>
+          <button class="bandBtn" id="band4">n79: </button>
         </div>
       </div>
     </div>
