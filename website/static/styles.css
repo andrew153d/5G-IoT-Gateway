@@ -1,0 +1,68 @@
+:root {
+  --text: #d4d4d4;
+  --header_background: #1e0c57;
+  --buttonBackground: #130b0e;
+  --outline: #65636d;
+  --lower_background: #1e225b;
+  --middle_background: #000000;
+}
+
+body {
+  font-size: 16px;
+  color: var(--text);
+  background-color: #090808;
+  font-family: 'oxygen', sans-serif;
+
+}
+
+.header {
+  background-color: var(--header_background);
+  width: 100%;
+  /*margin: 10px 10% 0px 10%;*/
+  border: 2px solid var(--outline);
+  border-radius: 10px;
+  padding: 20px;
+  height: 180px;
+}
+
+#logBtn {
+  height: 100px;
+  width: 80%;
+  background-color: var(--buttonBackground);
+  border-radius: 10px;
+  margin: 15px 5% 10px 15%;
+}
+
+.smBtn {
+  height: 50px;
+  width: 75%;
+  background-color: var(--buttonBackground);
+  border-radius: 20px;
+  margin: 10px 15% 0px 5%;
+}
+
+.container {
+  margin: 10px;
+}
+
+#dataRow {
+  background-color: var(--middle_background);
+  border: 2px solid var(--outline);
+  border-radius: 10px;
+}
+
+#bandBox {
+
+  padding: 20px;
+  background-color: var(--lower_background);
+  border: 2px solid var(--outline);
+  border-radius: 10px;
+}
+
+.bandBtn {
+  height: 100px;
+  width: 80%;
+  background-color: var(--buttonBackground);
+  border-radius: 20px;
+  margin: 10px 10% 0px 10%;
+}

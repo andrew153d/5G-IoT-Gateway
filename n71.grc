@@ -55,7 +55,7 @@ blocks:
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: 100e6
-    step: 100e3
+    step: 1e6
     stop: 6000e6
     value: 680e6
     widget: counter_slider
@@ -148,22 +148,104 @@ blocks:
     coordinate: [368, 12.0]
     rotation: 0
     state: true
-- name: analog_probe_avg_mag_sqrd_x_0
-  id: analog_probe_avg_mag_sqrd_x
+- name: variable_function_probe_0
+  id: variable_function_probe
   parameters:
-    affinity: ''
-    alias: ''
-    alpha: '1'
+    block_id: level
     comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    threshold: '0'
-    type: cf
+    function_args: ''
+    function_name: level
+    poll_rate: '2'
+    value: '0'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 340.0]
+    coordinate: [1080, 36.0]
+    rotation: 0
+    state: true
+- name: variable_qtgui_label_0
+  id: variable_qtgui_label
+  parameters:
+    comment: ''
+    formatter: None
+    gui_hint: ''
+    label: Power(dBm)
+    type: raw
+    value: variable_function_probe_0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1296, 60.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_mag_squared_0
+  id: blocks_complex_to_mag_squared
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 368.0]
+    rotation: 0
+    state: true
+- name: blocks_moving_average_xx_0
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: '50000'
+    max_iter: '4000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: 2e-5
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 348.0]
+    rotation: 0
+    state: true
+- name: blocks_nlog10_ff_0
+  id: blocks_nlog10_ff
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '10'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 380.0]
+    rotation: 0
+    state: true
+- name: level
+  id: blocks_probe_signal_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1184, 356.0]
     rotation: 0
     state: true
 - name: osmosdr_source_0
@@ -539,7 +621,7 @@ blocks:
     alpha8: '1.0'
     alpha9: '1.0'
     autoscale: 'False'
-    average: '0.1'
+    average: '1.0'
     axislabels: 'True'
     bw: samp_rate
     color1: '"blue"'
@@ -557,7 +639,7 @@ blocks:
     fc: freq
     fftsize: '1024'
     freqhalf: 'True'
-    grid: 'True'
+    grid: 'False'
     gui_hint: ''
     label: Relative Gain
     label1: ''
@@ -575,7 +657,7 @@ blocks:
     minoutbuf: '0'
     name: '""'
     nconnections: '1'
-    norm_window: 'False'
+    norm_window: 'True'
     showports: 'False'
     tr_chan: '0'
     tr_level: '0.0'
@@ -601,7 +683,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 428.0]
+    coordinate: [488, 172.0]
     rotation: 0
     state: true
 - name: qtgui_number_sink_0
@@ -609,7 +691,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    autoscale: 'False'
+    autoscale: 'True'
     avg: '0'
     color1: ("black", "black")
     color10: ("black", "black")
@@ -644,8 +726,8 @@ blocks:
     label7: ''
     label8: ''
     label9: ''
-    max: '1'
-    min: '-1'
+    max: '-80'
+    min: '0'
     name: '""'
     nconnections: '1'
     type: float
@@ -664,7 +746,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 324.0]
+    coordinate: [1192, 436.0]
     rotation: 0
     state: true
 - name: qtgui_waterfall_sink_x_0
@@ -725,13 +807,16 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [720, 508.0]
+    coordinate: [488, 276.0]
     rotation: 0
     state: true
 
 connections:
-- [analog_probe_avg_mag_sqrd_x_0, '0', qtgui_number_sink_0, '0']
-- [osmosdr_source_0, '0', analog_probe_avg_mag_sqrd_x_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_moving_average_xx_0, '0']
+- [blocks_moving_average_xx_0, '0', blocks_nlog10_ff_0, '0']
+- [blocks_nlog10_ff_0, '0', level, '0']
+- [blocks_nlog10_ff_0, '0', qtgui_number_sink_0, '0']
+- [osmosdr_source_0, '0', blocks_complex_to_mag_squared_0, '0']
 - [osmosdr_source_0, '0', qtgui_freq_sink_x_0, '0']
 - [osmosdr_source_0, '0', qtgui_waterfall_sink_x_0, '0']
 

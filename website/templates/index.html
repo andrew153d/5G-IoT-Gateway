@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!--<meta http-equiv="refresh" content="5">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>5G Gateway</title>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 header">
+        <p> Network Status: Connected</p>
+        <p> Latency: 102ms</p>
+        <p> Upload: 5.29 Mbps</p>
+        <p> Download: 44.42 Mbps</p>
+      </div>
+    </div>
+
+    <div id="dataRow" class="row">
+      <div class="col-md-6 col-xs-6">
+        <button id="logBtn">Log Data</button>
+      </div>
+      <div class="col-md-6 col-xs-6">
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <button class="smBtn">Reset Data Log</button>
+          </div>
+          <div class="col-12 col-sm-12">
+            <button class="smBtn"> Email Data Log </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bandBox" class="row">
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+          <button onclick="doSomething()" id="band1" class="bandBtn"> n71: </button>
+        </div>
+        <div class="col-md-6 col-xs-6">
+          <button onclick="doSomething()" class="bandBtn">n77:</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+          <button class="bandBtn">n78: </button>
+        </div>
+        <div class="col-md-6 col-xs-6">
+          <button class="bandBtn">n79: </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
