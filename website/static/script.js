@@ -9,15 +9,7 @@ function getNetwork() {
 
         body: JSON.stringify({
 
-            'title': 10,
-
-            'description': 1,
-
-            'yor': 2,
-
-            'publisher': 3,
-
-            'genre': 4
+            'status':1
 
         }),
 
@@ -29,7 +21,9 @@ function getNetwork() {
         .then(response => response.json())
 
         .then(jsonResponse => {
-
+            document.getElementById("latency").innerHTML = "Latency: " + jsonResponse.latency + " ms";
+            document.getElementById("UL").innerHTML = "Upload: " + jsonResponse.UL + " Mbps";
+            document.getElementById("DL").innerHTML = "Download: " + jsonResponse.DL + " Mbps";
             document.getElementById("networkStats").style.backgroundColor = color;
 
         })

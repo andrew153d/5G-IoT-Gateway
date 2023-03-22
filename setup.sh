@@ -93,6 +93,7 @@ sudo apt-get install minicom net-tools speedtest-cli -y
 # tools for web app
 pip install Flask
 pip install flask-wtf
+pip install tcp-latency
 
 sudo apt update
 

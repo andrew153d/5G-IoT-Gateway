@@ -1,5 +1,5 @@
 # 5G IoT Gateway with RF Measurement Capability
-An install script to install Gnu Radio and BladeRF on a Raspberry Pi
+A measurement platform to test 5G networks
 
 ## Directions
 * Use RPI Imager
@@ -12,4 +12,9 @@ An install script to install Gnu Radio and BladeRF on a Raspberry Pi
 * cd 5G-IoT-Gateway
 * chmod +x setup.sh
 * ./setup.sh
-* You will have to hit enter and say yes to a couple prompts
+* sit back and relax, this will take a while
+
+## Run the Website
+* cd ~/5G-IoT-Gateway/website
+* python3 inerface.py
+* In a browser, go to ipaddress:5000
