@@ -14,6 +14,8 @@ import argparse
 import csv
 import struct
 from   pathlib import Path
+
+
 # =============================================================================
 # Close the device and exit
 # =============================================================================
@@ -48,9 +50,9 @@ def probe_bladerf():
 # =============================================================================
 # RECEIVE
 # =============================================================================
-def receive(device, channel : int, freq : int, rate : int, gain : int,
+def receive(device, channel : int, _freq : int, _rate : int, _gain : int,
             tx_start = None, rx_done = None,
-            rxfile : str = '', num_samples : int = 1024):
+            rxfile : str = '', _num_samples : int = 1024):
 
     status = 0
 
@@ -64,9 +66,9 @@ def receive(device, channel : int, freq : int, rate : int, gain : int,
 
     # Configure BladeRF
     ch             = device.Channel(channel)
-    ch.frequency   = freq
-    ch.sample_rate = rate
-    ch.gain        = gain
+    ch.frequency   = _freq
+    ch.sample_rate = _rate
+    ch.gain        = _gain
 
     # Setup synchronous stream
     device.sync_config(layout         = _bladerf.ChannelLayout.RX_X1,
@@ -92,11 +94,11 @@ def receive(device, channel : int, freq : int, rate : int, gain : int,
     # Save the samples
     with open(rxfile, 'wb') as outfile:
         while True:
-            if num_samples > 0 and num_samples_read == num_samples:
+            if _num_samples > 0 and num_samples_read == _num_samples:
                 break
-            elif num_samples > 0:
+            elif _num_samples > 0:
                 num = min(len(buf)//bytes_per_sample,
-                          num_samples-num_samples_read)
+                          _num_samples-num_samples_read)
             else:
                 num = len(buf)//bytes_per_sample
 
@@ -137,41 +139,56 @@ def bin2csv( binfile = None, csvfile = None, chunk_bytes = 4*1024 ):
                     sig_i, = struct.unpack('<h', data[i:i+2])
                     sig_q, = struct.unpack('<h', data[i+2:i+4])
                     csvwriter.writerow( [sig_i, sig_q] )
-    print( "Processed", str(count//2//2), "samples." )
+    #print( "Processed", str(count//2//2), "samples." )
 ##########################################################################
 def calculate_power_in_db(csv_path):
     # Load the CSV file
     maxPower = 0
     with open(csv_path, 'r') as csv_file:
+        reader = csv.reader(csv_file)
         csv_reader = csv.reader(csv_file)
         data = []
         pow = []
+        sum = 0
+        max = 0
+        numRows = 0
         for row in csv_reader:
             i, q = float(row[0]), float(row[1])
+            sqr = (i**2 + q**2)
+            if(sqr > max):
+                max = sqr
+            sum = sum+sqr
+            numRows += 1
             data.append(i + 1j*q)
-            pow.append(i**2 + q**2)
+        #print("max: " + str(10*np.log10(sqr)))    
     
     # Calculate the power
     power = np.mean(np.abs(data)**2)
-    print(10*np.log10(max(pow)))
     # Convert to dB
-    power_db = 10*np.log10(power)
+    power_db = 10*np.log10(sqr)
     
     # Convert power in dB to a string
-    power_db_str = str(round(power_db, 3))
+    power_db_str = str(round(power_db, 2))
     
-    return power_db_str
-
-uut = probe_bladerf()
-if( uut == None ):
-    print( "No bladeRFs detected. Exiting." )
-    shutdown( error = -1, board = None )
+    return power_db
 
 
-b = _bladerf.BladeRF( uut )
-rx_ch = _bladerf.CHANNEL_RX(0)
-#seconds = time.time()
-receive(device = b, channel = rx_ch, freq = 680000000, rate = 35000000, gain = 1, tx_start = None, rx_done = None, rxfile = 'rx.bin', num_samples = 200000)
-#print(time.time()-seconds)
-bin2csv('rx.bin', 'rx_csv.csv')
-print("power " + calculate_power_in_db('rx_csv.csv'))
+
+def measure_power(freq, rate, gain, num_samples):
+    uut = probe_bladerf()
+    if( uut == None ):
+        print( "No bladeRFs detected. Exiting." )
+        shutdown( error = -1, board = None )
+    b = _bladerf.BladeRF( uut )
+    rx_ch = _bladerf.CHANNEL_RX(0)
+    #seconds = time.time()
+    receive(device = b, channel = rx_ch, _freq = 680000000, _rate = 35000000, _gain = 1, tx_start = None, rx_done = None, rxfile = 'rx.bin', _num_samples = 2000)
+    #print(time.time()-seconds)
+    bin2csv('rx.bin', 'rx_csv.csv')
+    power = calculate_power_in_db('rx_csv.csv')
+    #print("power " + power)
+    #shutdown(0, uut)
+    b.close()
+    return power
+
+#print(measure_power(680000000, 35000000, 1, 2000))

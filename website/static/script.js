@@ -61,3 +61,40 @@ function getNetwork() {
         })
 
 }
+
+function getBandPower(band) {
+    color = document.getElementById("bandBox").style.backgroundColor;
+    document.getElementById("bandBox").style.backgroundColor = "#454040";
+    const response = fetch('/info/bandPower', {
+
+        method: 'POST',
+
+        body: JSON.stringify({
+
+            'bandNum': band
+
+        }),
+
+        headers: {
+            'Content-Type': 'application/json',
+        }
+
+    })
+        .then(response => response.json())
+
+        .then(jsonResponse => {
+            if (band == 1) {
+                document.getElementById("band1").innerHTML = "n71: " + jsonResponse.power + " dBm";
+            } else if (band == 2) {
+                document.getElementById("band2").innerHTML = "n77: " + jsonResponse.power + " dBm";
+            } else if (band == 3) {
+                document.getElementById("band3").innerHTML = "n78: " + jsonResponse.power + " dBm";
+            } else if (band == 4) {
+                document.getElementById("band4").innerHTML = "n79: " + jsonResponse.power + " dBm";
+            }
+            
+            document.getElementById("bandBox").style.backgroundColor = color;
+
+        })
+
+}

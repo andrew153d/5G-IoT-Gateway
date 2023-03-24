@@ -33,7 +33,10 @@
             <button onclick="logData(1)" class="smBtn">Reset Data Log</button>
           </div>
           <div class="col-12 col-sm-12">
-            <button onclick="logData(2)" class="smBtn"> Email Data Log </button>
+
+            <form action="/show_data" target="_blank">
+              <button type="submit" class="smBtn"> Show Data Log </button>
+            </form>
           </div>
         </div>
       </div>
@@ -41,18 +44,18 @@
     <div id="bandBox" class="row">
       <div class="row">
         <div class="col-md-6 col-xs-6">
-          <button onclick="doSomething()" id="band1" class="bandBtn"> n71: </button>
+          <button onclick="getBandPower(1)" id="band1" class="bandBtn"> n71: </button>
         </div>
         <div class="col-md-6 col-xs-6">
-          <button onclick="doSomething()" id="band2" class="bandBtn">n77:</button>
+          <button onclick="getBandPower(2)" id="band2" class="bandBtn">n77:</button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 col-xs-6">
-          <button class="bandBtn" id="band3">n78: </button>
+          <button onclick="getBandPower(3)" class="bandBtn" id="band3">n78: </button>
         </div>
         <div class="col-md-6 col-xs-6">
-          <button class="bandBtn" id="band4">n79: </button>
+          <button onclick="getBandPower(4)" class="bandBtn" id="band4">n79: </button>
         </div>
       </div>
     </div>
