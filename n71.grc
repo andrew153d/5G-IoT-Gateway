@@ -202,18 +202,18 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    length: '50000'
+    length: '500000'
     max_iter: '4000'
     maxoutbuf: '0'
     minoutbuf: '0'
-    scale: 2e-5
+    scale: 2e-6
     type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 348.0]
+    coordinate: [752, 340.0]
     rotation: 0
     state: true
 - name: blocks_nlog10_ff_0
@@ -245,7 +245,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 356.0]
+    coordinate: [1232, 260.0]
     rotation: 0
     state: true
 - name: osmosdr_source_0

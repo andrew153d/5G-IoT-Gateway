@@ -264,7 +264,7 @@ class n71(gr.top_block, Qt.QWidget):
         self.osmosdr_source_0.set_antenna('RX1', 0)
         self.osmosdr_source_0.set_bandwidth(samp_rate, 0)
         self.blocks_nlog10_ff_0 = blocks.nlog10_ff(10, 1, 0)
-        self.blocks_moving_average_xx_0 = blocks.moving_average_ff(50000, (2e-5), 4000, 1)
+        self.blocks_moving_average_xx_0 = blocks.moving_average_ff(500000, (2e-6), 4000, 1)
         self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1)
 
 
