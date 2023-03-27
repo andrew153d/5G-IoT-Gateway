@@ -80,11 +80,14 @@ sudo apt update
 # https://github.com/Nuand/bladeRF/tree/master/host#linux-and-osx
 # https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Linux#building-bladerf-libraries-and-tools-from-source
 
-# cd ~/bladeRF/host/libraries/libbladeRF_bindings/python
-# sudo python3 setup.py install
-# cd ~/
+git clone https://github.com/Nuand/bladeRF.git
+cd ~/bladeRF/host/libraries/libbladeRF_bindings/python
+sudo python3 setup.py install
+cd ~/
 
-
+# add GPIO control
+# https://ubuntu.com/tutorials/gpio-on-raspberry-pi#3-basic-gpio-example
+sudo apt install python3-lgpio -y
 # ---- General tutorial ---- https://www.waveshare.com/wiki/SIM8200EA-M2_5G_HAT
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
 
