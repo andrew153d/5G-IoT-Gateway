@@ -13,6 +13,18 @@
 #follow these instructions to install vncserver
 #https://www.youtube.com/watch?v=3K1hUwxxYek
 
+cd ~/
+sudo apt update
+sudo apt install lightdm -y
+sudo apt install x11vnc -y
+sudo mv 5G-IoT-Gateway/utils/x11vnc.service /lib/systemd/system/
+
+systemctl daemon-reload
+systemctl enable x11vnc.service
+systemctl start x11vnc.service
+systemctl status x11vnc.service
+
+# ---
 
 sudo apt-get update && sudo apt-get upgrade -y
 
@@ -109,4 +121,6 @@ pip install tcp-latency
 pip install pydrive
 
 sudo apt update
+
+sudo reboot now
 

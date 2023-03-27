@@ -12,7 +12,8 @@ A measurement platform to test 5G networks
 * cd 5G-IoT-Gateway
 * chmod +x setup.sh
 * ./setup.sh
-* sit back and relax, this will take a while
+* the first item to install is vnc, you will need to type your pasword a few times here
+* After vnc installs, it will take ~30 minutes
 
 ## Run the Website
 * cd ~/5G-IoT-Gateway/website
