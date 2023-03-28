@@ -1,9 +1,9 @@
 # 5G IoT Gateway with RF Measurement Capability
 A measurement platform to test 5G networks
 
-#Demo Video
+## Demo Video
 I'm no youtuber but here is a video of the current state of the device as of March 2023
-[![Watch the video](https://youtu.be/Gw4qhBvPAFY)
+[![5G Demo](media/screenshot_youtube.PNG)](https://youtu.be/Gw4qhBvPAFY)
 
 ## Directions
 * Use RPI Imager
