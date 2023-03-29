@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 from tcp_latency import measure_latency
 import speedtest 
 import pandas as pd
@@ -130,6 +130,12 @@ def showData():
     uploaded_df_html = uploaded_df.to_html()
     return render_template('show_csv.html',
                            data_var=uploaded_df_html)
+
+@app.route('/download')
+def downloadFile ():
+    #For windows you need to use drive name [ex: F:/Example.pdf]
+    path = "MeasuredData.csv"
+    return send_file(path, as_attachment=True)
 
 #return main page
 @app.route('/')

@@ -7,11 +7,29 @@
   --middle_background: #000000;
 }
 
+.white_text {
+  color: var(--text);
+  font-size: 1.5em;
+}
+
+#BackBtn {
+  height: 125px;
+  width: 100%;
+  background-color: var(--header_background)
+}
+
+#DownloadBtn {
+  height: 125px;
+  width: 100%;
+  background-color: var(--header_background)
+}
+
 body {
   font-size: 16px;
   color: var(--text);
   background-color: #090808;
   font-family: 'oxygen', sans-serif;
+  font-size: 1.5em;
 
 }
 
