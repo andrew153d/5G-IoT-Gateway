@@ -10,9 +10,8 @@
 # ./setup.sh
 # You will have to hit enter and say yes to a couple prompts
 
-#follow these instructions to install vncserver
+# -------- install vncserver --------
 #https://www.youtube.com/watch?v=3K1hUwxxYek
-
 cd ~/
 sudo apt update
 sudo apt install lightdm -y
@@ -23,13 +22,14 @@ systemctl daemon-reload
 systemctl enable x11vnc.service
 systemctl start x11vnc.service
 systemctl status x11vnc.service
+# -------- --------
 
-# ---
 
 sudo apt-get update && sudo apt-get upgrade -y
 
 sudo apt install ssh -y
 
+# -------- install bladerf images--------
 sudo add-apt-repository -y ppa:nuandllc/bladerf
 sudo apt-get update
 
@@ -37,9 +37,9 @@ sudo apt-get update
 mkdir ~/blade
 sudo wget -P ~/blade/ https://www.nuand.com/fx3/bladeRF_fw_latest.img
 sudo wget -P ~/blade/ https://www.nuand.com/fpga/hostedxA4-latest.rbf
+# -------- --------
 
-
-
+# -------- install GNU-radio and dependencies --------
 sudo apt-get install -y libusb-1.0-0-dev libusb-1.0-0 git cmake g++ \
    libboost-all-dev libgmp-dev swig python3-numpy python3-matplotlib \
    python3-mako python3-sphinx python3-lxml doxygen libfftw3-dev \
@@ -54,10 +54,14 @@ sudo apt update
 sudo apt install gnuradio -y
    
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+# -------- --------
 
+# -------- install bladerf(doesn't seem to install python bindings)--------
 sudo apt-get install -y bladerf libbladerf-dev bladerf-firmware-fx3 -y
 sudo apt-get install bladerf-fpga-hostedxa4 -y   
+# -------- --------
 
+# -------- install GNU-radio blocks--------
 mkdir ~/gr
 
 cd ~/gr
@@ -87,22 +91,26 @@ make -j4
 sudo make install && sudo ldconfig
 
 sudo apt update
+# -------- --------
 
+
+# -------- install bladeRF python bindings--------
 # install bladeRF python module from 
 # https://github.com/Nuand/bladeRF/tree/master/host#linux-and-osx
 # https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Linux#building-bladerf-libraries-and-tools-from-source
-
 git clone https://github.com/Nuand/bladeRF.git
 cd ~/bladeRF/host/libraries/libbladeRF_bindings/python
 sudo python3 setup.py install
 cd ~/
+# -------- --------
 
-# add GPIO control
+# -------- add GPIO Control --------
 # https://ubuntu.com/tutorials/gpio-on-raspberry-pi#3-basic-gpio-example
 sudo apt install python3-lgpio -y
+
+# -------- get drivers for waveshare HAT--------
 # ---- General tutorial ---- https://www.waveshare.com/wiki/SIM8200EA-M2_5G_HAT
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
-
 cd ~/
 wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
 sudo apt-get install python3-pip -y
@@ -111,14 +119,33 @@ sudo apt-get install unzip -y
 unzip  SIM820X_RNDIS.zip
 sudo chmod 777 SIM820X_RNDIS.py
 sudo python3 SIM820X_RNDIS.py
+# -------- --------
 
+
+# -------- minicom: used for connection with bladerf
+# net-tools: give access to ifconfig
+# speedtest-cli: network speed tool --------
 sudo apt-get install minicom net-tools speedtest-cli -y
+# -------- --------
 
-# tools for web app
+# -------- tools for web app --------
 pip install Flask
 pip install flask-wtf
 pip install tcp-latency
 pip install pydrive
+# -------- --------
+
+# -------- setup website autorun --------
+
+cd ~/5G-IoT-Gateway/
+chmod +x run.sh
+crontab -l | { cat; echo "@reboot ./5G-IoT-Gateway/run.sh"; } | crontab -
+
+# --------------------
+
+
+
+
 
 sudo apt update
 
