@@ -10,6 +10,9 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 * Instal Ubuntu Desktop 22.04.1 LTS (64-Bit)
 * Write to SD Card
 * Install SD card, plug in, and follow prompts to start up the Pi
+* Go to 9 dots on bottom left > settings
+* Power > Screen Blank > Never
+* Users > Unlock > Enter Password > Automatic Login > Turn that on
 * Open the command line and enter the following
 * sudo apt-get install git
 * git clone https://github.com/andrew153d/5G-IoT-Gateway.git
