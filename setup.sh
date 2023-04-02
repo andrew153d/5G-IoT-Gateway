@@ -1,22 +1,10 @@
-# Usr RPI Imager
-#Instal Ubuntu Desktop 22.04.1 LTS (64-Bit)
-# Write to SD Card
-# Install SD card, plug in, and follow prompts to start up the Pi
-# Open the command line and enter the following
-# sudo apt-get install git
-# git clone https://github.com/andrew153d/5G-IoT-Gateway.git
-# cd 5G-IoT-Gateway
-# chmod +x setup.sh
-# ./setup.sh
-# You will have to hit enter and say yes to a couple prompts
-
 # -------- install vncserver --------
 #https://www.youtube.com/watch?v=3K1hUwxxYek
 cd ~/
 sudo apt update
 sudo apt install lightdm -y
 sudo apt install x11vnc -y
-sudo mv 5G-IoT-Gateway/utils/x11vnc.service /lib/systemd/system/
+sudo cp 5G-IoT-Gateway/utils/x11vnc.service /lib/systemd/system/
 
 systemctl daemon-reload
 systemctl enable x11vnc.service
@@ -98,6 +86,7 @@ sudo apt update
 # install bladeRF python module from 
 # https://github.com/Nuand/bladeRF/tree/master/host#linux-and-osx
 # https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Linux#building-bladerf-libraries-and-tools-from-source
+cd ~/
 git clone https://github.com/Nuand/bladeRF.git
 cd ~/bladeRF/host/libraries/libbladeRF_bindings/python
 sudo python3 setup.py install
@@ -131,6 +120,7 @@ sudo apt-get install minicom net-tools speedtest-cli -y
 # -------- tools for web app --------
 pip install Flask
 pip install flask-wtf
+pip install pandas
 pip install tcp-latency
 pip install pydrive
 # -------- --------
@@ -142,10 +132,6 @@ chmod +x run.sh
 crontab -l | { cat; echo "@reboot ./5G-IoT-Gateway/run.sh"; } | crontab -
 
 # --------------------
-
-
-
-
 
 sudo apt update
 
