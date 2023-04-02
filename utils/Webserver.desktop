@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Exec=./5G-IoT-Gateway/run.sh
+Name=Webserver
+Comment=Webserver

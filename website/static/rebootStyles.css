@@ -1,0 +1,19 @@
+#reboot {
+    font-family: 'oxygen', sans-serif;
+    color: var(--text);
+    font-size: 3em;
+    text-align: center;
+}
+
+#refreshBtn {
+    margin: auto;
+    height: 50px;
+    width: 100px;
+}
+
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

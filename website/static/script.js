@@ -62,6 +62,20 @@ function getNetwork() {
 
 }
 
+function shutdownServer() {
+    ocument.getElementsByTagName("html")[0].innerHTML
+}
+
+function loadPage() {
+    fetch('another-page.html')
+        .then(response => response.text())
+        .then(html => {
+            document.open();
+            document.write(html);
+            document.close();
+        });
+}
+
 function getBandPower(band) {
     color = document.getElementById("bandBox").style.backgroundColor;
     document.getElementById("bandBox").style.backgroundColor = "#454040";

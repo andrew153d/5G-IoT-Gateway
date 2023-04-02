@@ -12,6 +12,13 @@
   font-size: 1.5em;
 }
 
+.headerButton {
+  height: 50px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: var(--header_background)
+}
+
 #BackBtn {
   height: 125px;
   width: 100%;
