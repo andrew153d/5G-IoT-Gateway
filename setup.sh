@@ -133,6 +133,14 @@ crontab -l | { cat; echo "@reboot ./5G-IoT-Gateway/run.sh"; } | crontab -
 
 # --------------------
 
+# -------- add desktop shortcut --------
+cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/Desktop
+cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/.local/share/applications
+gio set ~/Desktop/Webserver.desktop metadata::trusted true
+chmod a+x ~/Desktop/Webserver.desktop
+# -------- --------
+
+
 sudo apt update
 
 sudo reboot now
