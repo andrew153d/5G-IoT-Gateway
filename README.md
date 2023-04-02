@@ -19,10 +19,11 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 * cd 5G-IoT-Gateway
 * chmod +x setup.sh
 * ./setup.sh
-* the first item to install is vnc, you will need to type your pasword a few times here
+* A purple box will come up, select lightdm and hit enter
+* The first item to install is vnc, you will need to type your pasword a few times here
 * After vnc installs, it will take ~30 minutes
 
-## Run the Website
+## To run the Website
 * cd ~/5G-IoT-Gateway/website
 * python3 inerface.py
 * In a browser, go to ipaddress:5000
