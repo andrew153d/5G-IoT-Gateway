@@ -17,6 +17,8 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 * sudo apt-get install git
 * git clone https://github.com/andrew153d/5G-IoT-Gateway.git
 * cd 5G-IoT-Gateway
+* nano setup.sh
+* change the 5GModem variable to your modem > save and exit editor
 * chmod +x setup.sh
 * ./setup.sh
 * A purple box will come up, select lightdm and hit enter
