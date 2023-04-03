@@ -1,0 +1,39 @@
+:root {
+    --text: #d4d4d4;
+    --header_background: #1e0c57;
+    --buttonBackground: #130b0e;
+    --outline: #65636d;
+    --lower_background: #1e225b;
+    --middle_background: #000000;
+}
+
+.white_text {
+    color: var(--text);
+    font-size: 1.5em;
+}
+
+body{
+    background-color: #000000;
+    color: var(--text);
+    font-size: 1.5em;
+}
+
+input{
+    color: #000000;
+}
+
+#SDRsettings{
+    background-color: var(--lower_background);
+    margin: 10px;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+
+.Btn {
+    height: 50px;
+    width: 70%;
+    background-color: var(--buttonBackground);
+    border-radius: 20px;
+    margin: 10px 15% 0px 15%;
+}

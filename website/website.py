@@ -6,13 +6,11 @@ import csv
 import sys
 import threading
 import time
+import json
 
 sys.path.append("../")
-from bladeRF_signal_power import *
-
+from measure_power.bladeRF_signal_power import *
 app = Flask(__name__)
-shutdownFlag = False
-
 
 # get the first entry of the last line of the file
 def extract_entry_num(csv_file_path):
@@ -113,7 +111,6 @@ def log():
                 file, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
             )
             writer.writerow(["Point", "Latency", "Upload", "Download"])
-            print("clearing")
     elif action == 2:
         # email data
         print(action)
@@ -145,6 +142,13 @@ def netStats():
 @app.route("/info/bandPower", methods=["POST"])
 def bandPower():
     print("measuring")
+    with open('SDRconfig.json', 'r') as f:
+        data = json.load(f)
+    for band in data['bands']:
+        print(f"Name: {band['name']}")
+        print(f"Bandwidth: {band['bandwidth']}")
+        print(f"Frequency: {band['frequency']}")
+        print()
     try:
         bandNum = request.get_json()["bandNum"]
     except:

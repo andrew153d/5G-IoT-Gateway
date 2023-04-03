@@ -6,14 +6,40 @@
     <!--<meta http-equiv="refresh" content="5">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/settingstyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <title>5G Gateway</title>
 
 </head>
 
 <body>
-    SUP
+    <div class="container">
+        <div class = "row">
+            <form action="/" target="_parent">
+                <button type="submit" class="Btn white_text" id="BackBtn">Back</button>
+            </form>
+        </div>
+
+        <div class="row" id="SDRsettings">
+            <div class="col-xs-12">
+                <form>
+                    <label for="bandName">Name:</label>
+                    <input type="text" id="bandName" name="bandName"><br>
+                    <label for="center">Center: </label>
+                    <input type="text" id="center" name="center"><br>
+                    <label for="bandNum">Slot:</label>
+                    <select id="bandNum" name="bandNum">
+                        <option value="band1">1</option>
+                        <option value="band2">2</option>
+                        <option value="band3">3</option>
+                        <option value="band4">4</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

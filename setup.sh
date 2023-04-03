@@ -97,6 +97,13 @@ cd ~/
 # https://ubuntu.com/tutorials/gpio-on-raspberry-pi#3-basic-gpio-example
 sudo apt install python3-lgpio -y
 
+# -------- setup for sixfab HAT--------
+#https://docs.sixfab.com/page/5g-lte-cellular-connectivity
+sudo apt purge modemmanager -y
+sudo apt purge network-manager -y
+# -------- --------
+
+
 # -------- get drivers for waveshare HAT--------
 # ---- General tutorial ---- https://www.waveshare.com/wiki/SIM8200EA-M2_5G_HAT
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
@@ -123,6 +130,11 @@ pip install flask-wtf
 pip install pandas
 pip install tcp-latency
 pip install pydrive
+# -------- --------
+
+# -------- install measure_power module--------
+cd ~/5G-IoT-Gateway/measure_power/
+pip install .
 # -------- --------
 
 # -------- setup website autorun --------

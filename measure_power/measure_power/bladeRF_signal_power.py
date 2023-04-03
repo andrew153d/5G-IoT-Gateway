@@ -188,6 +188,8 @@ def measure_power(freq, rate, gain, num_samples):
     power = calculate_power_in_db('rx_csv.csv')
     #print("power " + power)
     #shutdown(0, uut)
+    os.remove('rx.bin')
+    os.remove('rx_csv.csv')
     b.close()
     return power
 

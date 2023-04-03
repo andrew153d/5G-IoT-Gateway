@@ -1,0 +1,19 @@
+{
+    "bands": [
+        {
+            "name": "band1",
+            "bandwidth": 10,
+            "frequency": 23
+        },
+        {
+            "name": "band2",
+            "bandwidth": 5,
+            "frequency": 4
+        },
+        {
+            "name": "band3",
+            "bandwidth": 24,
+            "frequency": 0
+        }
+    ]
+}
