@@ -4,6 +4,8 @@ import speedtest
 import pandas as pd
 import csv
 import sys
+import threading
+import time
 
 sys.path.append("../")
 from bladeRF_signal_power import *
@@ -146,18 +148,37 @@ def bandPower():
     return jsonify({"power": round(power, 3)})
 
 
+def rebootPi():
+    time.sleep(1)
+    os.system("sudo reboot")
+
+
+def shutdownPython():
+    time.sleep(1)
+    os._exit(0)
+
+
+rebootThread = threading.Thread(target=rebootPi)
+restartThread = threading.Thread(target=shutdownPython)
+
+
 @app.route("/reboot")
 def reboot():
     # I know this wont work
-    os.system("sudo reboot")
+    rebootThread.start()
     return render_template("reboot.html")
 
 
 @app.route("/shutdown")
 def restart():
-    # This wont return the page, I need to find a solutio to this
-    sys.exit()
+    # This wont return the page, I need to find a solution to this
+    restartThread.start()
     return render_template("reboot.html")
+
+
+@app.route("/settings")
+def settings():
+    return render_template("settings.html")
 
 
 @app.route("/show_data")
@@ -178,10 +199,8 @@ def downloadFile():
     return send_file(path, as_attachment=True)
 
 
-# return main page
 @app.route("/")
 def index():
-    print("index")
     return render_template("index.html")
 
 
