@@ -195,8 +195,46 @@ def restart():
 
 @app.route("/settings")
 def settings():
-    return render_template("settings.html")
+    with open('SDRconfig.json', 'r') as f:
+        data = json.load(f)
+    names = []
+    for band in data['bands']:
+        names.append(band['name'])
+    return render_template("settings.html", band0 = names[0], band1 = names[1], band2 = names[2], band3 = names[3])
 
+@app.route("/settings/set", methods=["POST"])
+def setBand():
+    requestDict = request.get_json()
+    #print(requestDict)
+    counter = 0
+    with open('SDRconfig.json', 'r') as f:
+        data = json.load(f)
+    for band in data['bands']:
+        if (band['name'] == requestDict["oldName"]):
+            break
+        counter+=1
+    data['bands'][counter]["name"] = requestDict["newName"]
+    data['bands'][counter]["frequency"] = int(requestDict["freq"])
+    data['bands'][counter]["rate"] = int(requestDict["rate"])
+    data['bands'][counter]["gain"] = int(requestDict["gain"])
+    data['bands'][counter]["samples"] = int(requestDict["samples"])
+
+    formatted_json = json.dumps(data, indent=4)
+    with open('SDRconfig.json', 'w') as json_file:
+        json_file.write(formatted_json)
+    return jsonify({'empty': 1})
+
+@app.route("/settings/get", methods=["POST"])
+def getBand():
+    requestDict = request.get_json()
+    
+    with open('SDRconfig.json', 'r') as f:
+        data = json.load(f)
+    for band in data['bands']:
+        if (band['name'] == requestDict["title"]):
+            return jsonify(band)
+
+    return jsonify({'empty': 1})
 
 @app.route("/show_data")
 def showData():
@@ -211,7 +249,7 @@ def showData():
 
 @app.route("/download")
 def downloadFile():
-    # For windows you need to use drive name [ex: F:/Example.pdf]
+    
     path = "MeasuredData.csv"
     return send_file(path, as_attachment=True)
 

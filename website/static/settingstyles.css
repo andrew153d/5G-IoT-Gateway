@@ -30,6 +30,12 @@ input{
 
 }
 
+select{
+    color: #000000;
+}
+button {
+    color: #000000;
+}
 .Btn {
     height: 50px;
     width: 70%;

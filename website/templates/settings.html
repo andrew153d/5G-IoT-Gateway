@@ -22,18 +22,26 @@
 
         <div class="row" id="SDRsettings">
             <div class="col-xs-12">
-                <form>
-                    <label for="bandName">Name:</label>
-                    <input type="text" id="bandName" name="bandName"><br>
-                    <label for="center">Center: </label>
-                    <input type="text" id="center" name="center"><br>
-                    <label for="bandNum">Slot:</label>
-                    <select id="bandNum" name="bandNum">
-                        <option value="band1">1</option>
-                        <option value="band2">2</option>
-                        <option value="band3">3</option>
-                        <option value="band4">4</option>
-                    </select>
+                <form id = "bandForm">
+                    <label for="oldName">Slot:</label>
+                    <select id="oldName" name="oldName">
+                        <option value="{{band0}}">{{band0}}</option>
+                        <option value="{{band1}}">{{band1}}</option>
+                        <option value="{{band2}}">{{band2}}</option>
+                        <option value="{{band3}}">{{band3}}</option>
+                    </select><br>
+
+                    <label for="newName">Name:</label>
+                    <input type="text" id="newName" name="newName"><br>
+                    <label for="freq">Freq: </label>
+                    <input type="text" id="freq" name="freq"><br>
+                    <label for="rate">Rate: </label>
+                    <input type="rate" id="rate" name="rate"><br>
+                    <label for="gain">Gain: </label>
+                    <input type="text" id="gain" name="gain"><br>
+                    <label for="samples">Samples: </label>
+                    <input type="text" id="samples" name="samples"><br>
+                    <button type="button" onclick="changeBandSettings()">Submit</button>
                 </form>
             </div>
         </div>

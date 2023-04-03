@@ -1,3 +1,66 @@
+document.getElementById("oldName").onchange = changeListener;
+
+function changeListener() {
+    var value = this.value
+    console.log(value);
+    
+    const response = fetch('/settings/get', {
+
+        method: 'POST',
+
+        body: JSON.stringify({
+
+            'title': value
+
+        }),
+
+        headers: {
+            'Content-Type': 'application/json',
+        }
+
+    })
+        .then(response => response.json())
+
+        .then(jsonResponse => {
+
+            console.log(jsonResponse)
+            document.getElementById("newName").value = jsonResponse.name;
+            document.getElementById("freq").value = jsonResponse.frequency;
+            document.getElementById("rate").value = jsonResponse.rate;
+            document.getElementById("gain").value = jsonResponse.gain;
+            document.getElementById("samples").value = jsonResponse.samples;
+        })
+}
+
+
+
+function changeBandSettings() {
+    // get form data as FormData object
+    const formData = new FormData(document.getElementById("bandForm"));
+
+    // convert FormData object to JSON string
+    const json = JSON.stringify(Object.fromEntries(formData));
+
+    const response = fetch('/settings/set', {
+
+        method: 'POST',
+
+        body: json,
+
+        headers: {
+            'Content-Type': 'application/json',
+        }
+
+    })
+        .then(response => response.json())
+
+        .then(jsonResponse => {
+
+
+
+        })
+}
+
 
 //0: log data, 1: reset data, 2: email data
 function logData(type) {
