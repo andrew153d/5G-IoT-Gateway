@@ -10,7 +10,7 @@ function logData(type) {
         body: JSON.stringify({
 
             'status': type
-            
+
         }),
 
         headers: {
@@ -26,7 +26,7 @@ function logData(type) {
                 document.getElementById("UL").innerHTML = "Upload: " + jsonResponse.UL + " Mbps";
                 document.getElementById("DL").innerHTML = "Download: " + jsonResponse.DL + " Mbps";
             }
-            
+
             document.getElementById("dataRow").style.backgroundColor = color;
         })
 }
@@ -76,16 +76,18 @@ function loadPage() {
         });
 }
 
-function getBandPower(band) {
+function getBandPower(button) {
+    callerID = button.id;
     color = document.getElementById("bandBox").style.backgroundColor;
     document.getElementById("bandBox").style.backgroundColor = "#454040";
+
     const response = fetch('/info/bandPower', {
 
         method: 'POST',
 
         body: JSON.stringify({
 
-            'bandNum': band
+            'bandNum': callerID
 
         }),
 
@@ -97,18 +99,8 @@ function getBandPower(band) {
         .then(response => response.json())
 
         .then(jsonResponse => {
-            if (band == 1) {
-                document.getElementById("band1").innerHTML = "n71: " + jsonResponse.power + " dBm";
-            } else if (band == 2) {
-                document.getElementById("band2").innerHTML = "n77: " + jsonResponse.power + " dBm";
-            } else if (band == 3) {
-                document.getElementById("band3").innerHTML = "n78: " + jsonResponse.power + " dBm";
-            } else if (band == 4) {
-                document.getElementById("band4").innerHTML = "n79: " + jsonResponse.power + " dBm";
-            }
-            
+            document.getElementById(jsonResponse.name).innerHTML = jsonResponse.name + ": " + jsonResponse.power + " dBm";
             document.getElementById("bandBox").style.backgroundColor = color;
-
         })
 
 }

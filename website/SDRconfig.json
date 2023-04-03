@@ -1,19 +1,32 @@
 {
     "bands": [
         {
-            "name": "band1",
-            "bandwidth": 10,
-            "frequency": 23
+            "name": "n71",
+            "frequency": 680000000,
+            "rate": 35000000,
+            "gain": 1,
+            "samples": 200000
         },
         {
-            "name": "band2",
-            "bandwidth": 5,
-            "frequency": 4
+            "name": "n77",
+            "frequency": 3700000000,
+            "rate": 35000000,
+            "gain": 1,
+            "samples": 200000
         },
         {
-            "name": "band3",
-            "bandwidth": 24,
-            "frequency": 0
+            "name": "n78",
+            "frequency": 3500000000,
+            "rate": 35000000,
+            "gain": 1,
+            "samples": 200000
+        },
+        {
+            "name": "n79",
+            "frequency": 4700000000,
+            "rate": 35000000,
+            "gain": 1,
+            "samples": 200000
         }
     ]
 }

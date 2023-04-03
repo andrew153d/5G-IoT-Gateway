@@ -8,7 +8,7 @@ import threading
 import time
 import json
 
-sys.path.append("../")
+#sys.path.append("../")
 from measure_power.bladeRF_signal_power import *
 app = Flask(__name__)
 
@@ -136,36 +136,33 @@ def netStats():
             }
         )
 
+@app.route("/info/bandInfo", methods=["POST"])
+def bandInfo():
+    print("Retreiving Band Info")
+    with open('SDRconfig.json', 'r') as f:
+        data = json.load(f)
+    return jsonify({"empty": 1})
 
 # Button press from band section
 # Measure the network info and return json to frontend
 @app.route("/info/bandPower", methods=["POST"])
 def bandPower():
-    print("measuring")
+    try:
+        bandID = request.get_json()["bandNum"]
+        
+    except:
+        print("fail")
+        
+
     with open('SDRconfig.json', 'r') as f:
         data = json.load(f)
     for band in data['bands']:
-        print(f"Name: {band['name']}")
-        print(f"Bandwidth: {band['bandwidth']}")
-        print(f"Frequency: {band['frequency']}")
-        print()
-    try:
-        bandNum = request.get_json()["bandNum"]
-    except:
-        print("fail")
-
-    if bandNum == 1:
-        power = measure_power(freq=680000000, rate=35000000, gain=1, num_samples=200000)
-    elif bandNum == 2:
-        power = measure_power(freq=3700000000, rate=35000000, gain=1, num_samples=2000)
-    elif bandNum == 3:
-        power = measure_power(freq=3500000000, rate=35000000, gain=1, num_samples=2000)
-    elif bandNum == 4:
-        power = measure_power(freq=4700000000, rate=35000000, gain=1, num_samples=2000)
-    else:
-        power = 0
-
-    return jsonify({"power": round(power, 3)})
+        if band['name'] == bandID:
+            testBand = band
+            break  # stop searching once we find the band we're looking for
+    #print(testBand)
+    power = measure_power(freq=testBand['frequency'], rate=testBand['rate'], gain=testBand['gain'], num_samples=testBand['samples'])
+    return jsonify({"name": bandID, "power": round(power, 3)})
 
 
 def rebootPi():
@@ -221,7 +218,13 @@ def downloadFile():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    with open('SDRconfig.json', 'r') as f:
+        data = json.load(f)
+    names = []
+    for band in data['bands']:
+        names.append(band['name'])
+    print(names)
+    return render_template("index.html", band0 = names[0], band1 = names[1], band2 = names[2], band3 = names[3])
 
 
 if __name__ == "__main__":

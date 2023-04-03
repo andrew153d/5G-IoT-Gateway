@@ -61,18 +61,18 @@
     <div id="bandBox" class="row">
       <div class="row">
         <div class="col-md-6 col-xs-6">
-          <button onclick="getBandPower(1)" id="band1" class="bandBtn"> n71: </button>
+          <button onclick="getBandPower(this)" id="{{band0}}" class="bandBtn"> {{band0}}: </button>
         </div>
         <div class="col-md-6 col-xs-6">
-          <button onclick="getBandPower(2)" id="band2" class="bandBtn">n77:</button>
+          <button onclick="getBandPower(this)" id="{{band1}}" class="bandBtn"> {{band1}}:</button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 col-xs-6">
-          <button onclick="getBandPower(3)" class="bandBtn" id="band3">n78: </button>
+          <button onclick="getBandPower(this)" class="bandBtn" id="{{band2}}"> {{band2}}: </button>
         </div>
         <div class="col-md-6 col-xs-6">
-          <button onclick="getBandPower(4)" class="bandBtn" id="band4">n79: </button>
+          <button onclick="getBandPower(this)" class="bandBtn" id="{{band3}}">{{band3}}: </button>
         </div>
       </div>
     </div>
