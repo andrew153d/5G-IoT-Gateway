@@ -23,17 +23,33 @@ def extract_entry_num(csv_file_path):
             last_line = line
         return last_line[0]
 
+s = speedtest.Speedtest()
+
+def TestUL():
+    s.upload()
+    return
+
+def TestDL():
+    s.download()
+    return
 
 def measureNetwork():
-    print("evaluating Network")
+    print("Testing Network Speed")
     servers = []
-    s = speedtest.Speedtest()
+    
+    DLThread = threading.Thread(target = TestDL)
+    ULThread = threading.Thread(target = TestUL)
     s.get_servers(servers)
     s.get_best_server()
-    s.download()
-    s.upload()
+    start = time.time()
+    DLThread.start()
+    ULThread.start()
+    DLThread.join()
+    ULThread.join()
     s.results.share()
     results = s.results.dict()
+    end = time.time()
+    print('Execution Time: {}'.format(end-start))
     return s.results.dict()
 
 
