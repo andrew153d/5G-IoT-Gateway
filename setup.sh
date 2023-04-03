@@ -1,3 +1,7 @@
+# Choose you 5G Modem here
+# Options are "Waveshare" or "Sixfab"
+5GModem = "Waveshare"
+
 # -------- install vncserver --------
 #https://www.youtube.com/watch?v=3K1hUwxxYek
 cd ~/
@@ -97,25 +101,31 @@ cd ~/
 # https://ubuntu.com/tutorials/gpio-on-raspberry-pi#3-basic-gpio-example
 sudo apt install python3-lgpio -y
 
-# -------- setup for sixfab HAT--------
-#https://docs.sixfab.com/page/5g-lte-cellular-connectivity
-sudo apt purge modemmanager -y
-sudo apt purge network-manager -y
-# -------- --------
-
-
+if [ $5GModem == "Waveshare" ]
+then
 # -------- get drivers for waveshare HAT--------
 # ---- General tutorial ---- https://www.waveshare.com/wiki/SIM8200EA-M2_5G_HAT
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
-cd ~/
-wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
-sudo apt-get install python3-pip -y
-sudo pip3 install pyserial -y
-sudo apt-get install unzip -y
-unzip  SIM820X_RNDIS.zip
-sudo chmod 777 SIM820X_RNDIS.py
-sudo python3 SIM820X_RNDIS.py
+   cd ~/
+   wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
+   sudo apt-get install python3-pip -y
+   sudo pip3 install pyserial -y
+   sudo apt-get install unzip -y
+   unzip  SIM820X_RNDIS.zip
+   sudo chmod 777 SIM820X_RNDIS.py
+   sudo python3 SIM820X_RNDIS.py
 # -------- --------
+elif [ $5GModem == "Sixfab" ]
+then
+# -------- setup for sixfab HAT--------
+#https://docs.sixfab.com/page/5g-lte-cellular-connectivity
+   sudo apt purge modemmanager -y
+   sudo apt purge network-manager -y
+# -------- --------
+else
+   echo "Incorrect 5G Modem configuration"
+   exit 1
+fi
 
 
 # -------- minicom: used for connection with bladerf
