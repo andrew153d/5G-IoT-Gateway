@@ -108,7 +108,6 @@ if [ "$Modem" = "Waveshare" ]; then
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
    cd ~/
    wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
-   sudo apt-get install python3-pip -y
    sudo pip3 install pyserial -y
    sudo apt-get install unzip -y
    unzip  SIM820X_RNDIS.zip
@@ -134,6 +133,7 @@ sudo apt-get install minicom net-tools speedtest-cli -y
 # -------- --------
 
 # -------- tools for web app --------
+sudo apt install python3-pip -y
 pip install Flask
 pip install flask-wtf
 pip install pandas
