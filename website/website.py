@@ -67,13 +67,17 @@ def log():
 
         except:
             print("no file found")
+            open("MeasuredData.csv", 'w')
             file_length = 0
 
         # measure the latency, UL, DL
         results_dict = measureNetwork()
 
         # get the last entry number from the file
-        lastEntry = extract_entry_num("MeasuredData.csv")
+        if(file_length == 0):
+            lastEntry = "Point"
+        else:
+            lastEntry = extract_entry_num("MeasuredData.csv")
         if lastEntry == "Point":
             newEntry = 0
         else:
