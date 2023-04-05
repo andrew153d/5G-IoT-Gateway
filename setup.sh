@@ -26,7 +26,6 @@ sudo apt install ssh -y
 sudo add-apt-repository -y ppa:nuandllc/bladerf
 sudo apt-get update
 
-
 mkdir ~/blade
 sudo wget -P ~/blade/ https://www.nuand.com/fx3/bladeRF_fw_latest.img
 sudo wget -P ~/blade/ https://www.nuand.com/fpga/hostedxA4-latest.rbf
@@ -81,7 +80,7 @@ mkdir build
 cd build
 cmake ..
 make -j4
-sudo make install && sudo ldconfig
+sudo make install
 
 sudo apt update
 # -------- --------
@@ -93,6 +92,12 @@ sudo apt update
 # https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Linux#building-bladerf-libraries-and-tools-from-source
 cd ~/
 git clone https://github.com/Nuand/bladeRF.git
+cd bladeRF
+mkdir host/build
+cd host/build
+cmake ../
+make -j4
+sudo make install && sudo ldconfig
 cd ~/bladeRF/host/libraries/libbladeRF_bindings/python
 sudo python3 setup.py install
 cd ~/
