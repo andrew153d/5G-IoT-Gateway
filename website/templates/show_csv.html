@@ -2,21 +2,32 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="refresh" content="5">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
     <link rel="stylesheet" href="../static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>5G Gateway</title>
+
 </head>
 
 <body>
-    <div>
-        <form action="/" target="_parent">
-            <button type="submit" class="Btn white_text" id="BackBtn">Back</button>
-        </form>
-        <form action="/download" target="_parent">
-            <button type="submit" class="Btn white_text" id="DownloadBtn">Download</button>
-        </form>
-    </div>
-
-    <br>
-    {{ data_var|safe }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xs-6">
+                <form action="/" target="_parent">
+                    <button type="submit" class="smBtn white_text" id="BackBtn">Back</button>
+                </form>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <form action="/download" target="_parent">
+                    <button type="submit" class="smBtn white_text" id="DownloadBtn">Download</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        {{ data_var|safe }}
 </body>
 
 </html>
