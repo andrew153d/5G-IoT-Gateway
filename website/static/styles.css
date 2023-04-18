@@ -16,7 +16,8 @@
   height: 50px;
   width: 100%;
   border-radius: 20px;
-  background-color: var(--header_background)
+  background-color: var(--header_background);
+  font-size: 0.8em;
 }
 
 #BackBtn {
@@ -38,6 +39,10 @@ body {
   font-family: 'oxygen', sans-serif;
   font-size: 1.5em;
 
+}
+
+.col-xs-3 {
+  padding: 5px;
 }
 
 .header {
@@ -98,4 +103,27 @@ body {
   background-color: var(--buttonBackground);
   border-radius: 20px;
   margin: 10px 10% 0px 10%;
+}
+
+#dashboardHeader{
+  font-size: 2em;
+}
+
+#dashboardBox {
+  background-color: var(--middle_background);
+  height: 70vh;
+  border-radius: 20px;
+  border: 2px solid var(--outline);
+}
+
+#backBtn {
+  height: 50px;
+  width: 70%;
+  background-color: var(--buttonBackground);
+  border-radius: 20px;
+  margin: 10px 15% 0px 15%;
+}
+
+#dashboardBody{
+  background-color: var(--lower_background);
 }

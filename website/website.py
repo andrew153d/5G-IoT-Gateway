@@ -196,6 +196,9 @@ def restart():
     restartThread.start()
     return render_template("reboot.html")
 
+@app.route("/IoTDashboard")
+def dashboard():
+    return render_template("IoTDashboard.html")
 
 @app.route("/settings")
 def settings():
