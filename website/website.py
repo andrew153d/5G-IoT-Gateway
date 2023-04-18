@@ -1,3 +1,5 @@
+import subprocess
+import pexpect
 from flask import Flask, render_template, request, jsonify, send_file
 from tcp_latency import measure_latency
 import speedtest
@@ -7,10 +9,13 @@ import sys
 import threading
 import time
 import json
-
+from getpass import getuser
+import re
 #sys.path.append("../")
 from measure_power.bladeRF_signal_power import *
 app = Flask(__name__)
+
+shell = pexpect.spawn('/bin/bash')
 
 # get the first entry of the last line of the file
 def extract_entry_num(csv_file_path):
@@ -242,6 +247,41 @@ def getBand():
             return jsonify(band)
 
     return jsonify({'empty': 1})
+
+@app.route("/shell")
+def console():
+    return render_template('console.html')
+
+
+
+@app.route("/dir", methods=["POST"])
+def getDir():
+    
+    dir = "none"
+
+    print(dir)
+    return jsonify({"dir": dir})
+
+@app.route("/execShell", methods=["POST"])
+def execShell():
+    
+
+    requestDict = request.get_json()
+    command = requestDict["command"]
+
+    # Send the command to the shell and wait for the prompt
+    shell.sendline(command)
+    shell.expect('\n')
+    #shell.expect(pexpect.TIMEOUT, timeout=2)
+    
+    # Get the output of the command as a string
+    output = shell.before.decode('utf-8')
+    
+    # Remove escape characters from the output string
+    output = re.sub(r'\x1b[^m]*m', '', output)
+    output = output.replace('\r\n', '<br>')
+
+    return jsonify({"user": " ", "dir": " ", "command": " ", "output": output})
 
 @app.route("/show_data")
 def showData():

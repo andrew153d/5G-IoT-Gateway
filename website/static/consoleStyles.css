@@ -1,0 +1,18 @@
+body {
+    background-color: #000000;
+    font-family: "Courier New", Courier, monospace;
+}
+
+h1{
+    color: white;
+}
+
+#output {
+    color: #FFFFFF;
+}
+
+form input {
+    background: none;
+    border: none;
+    color: white;
+}
