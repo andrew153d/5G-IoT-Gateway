@@ -91,12 +91,12 @@ sudo apt update
 # https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Linux#building-bladerf-libraries-and-tools-from-source
 cd ~/
 git clone https://github.com/Nuand/bladeRF.git
-cd bladeRF
-mkdir host/build
-cd host/build
-cmake ../
-make -j4
-sudo make install && sudo ldconfig
+#cd bladeRF
+#mkdir host/build
+#cd host/build
+#cmake ../
+#make -j4
+#sudo make install && sudo ldconfig
 cd ~/bladeRF/host/libraries/libbladeRF_bindings/python
 sudo python3 setup.py install
 cd ~/
