@@ -3,7 +3,7 @@ body {
     font-family: "Courier New", Courier, monospace;
 }
 
-h1{
+h1 {
     color: white;
 }
 
@@ -15,4 +15,30 @@ form input {
     background: none;
     border: none;
     color: white;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+span,
+form {
+    display: inline-block;
+}
+
+form {
+    border-bottom: 2px solid #ccc;
+}
+
+input[type="text"] {
+    width: 200px;
+    text-overflow: fade(10px) fade(10px);
+}
+
+.green{
+    color: #30fd4c;
+}
+
+.blue{
+    color: #0059ff;
 }

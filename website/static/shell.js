@@ -19,9 +19,13 @@ function sendCommand(event) {
         .then(response => response.json())
 
         .then(jsonResponse => {
-            document.getElementById("output").innerHTML += '<br>' + jsonResponse.user + ' ' + jsonResponse.dir + ' ' + jsonResponse.command + ' ' + jsonResponse.output;
+            document.getElementById("output").innerHTML += jsonResponse.command + '<br>' + jsonResponse.output;
+            //<span class = "green"> user  </span> <span class = "blue"> dir</span>
+            document.getElementById("output").innerHTML += '<br>' + '<span class = "green">' + jsonResponse.user + "</span>" + ':' + '<span class = "blue">' + jsonResponse.dir + "$ " + "</span>";
             document.getElementById("command").value = ''; // clear the input field
             console.log(jsonResponse);
+            window.scrollBy(0, 1000);
+
         })
 
 }
@@ -49,4 +53,4 @@ function loadDir() {
         })
 }
 
-document.onload += loadDir();
+//document.onload += loadDir();

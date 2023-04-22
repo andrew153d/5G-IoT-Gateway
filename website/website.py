@@ -6,6 +6,7 @@ import speedtest
 import pandas as pd
 import csv
 import sys
+import socket
 import threading
 import time
 import json
@@ -252,36 +253,32 @@ def getBand():
 def console():
     return render_template('console.html')
 
-
-
 @app.route("/dir", methods=["POST"])
 def getDir():
     
-    dir = "none"
+    dir = "nonee"
 
     print(dir)
     return jsonify({"dir": dir})
 
 @app.route("/execShell", methods=["POST"])
 def execShell():
-    
-
+    global shell_process
     requestDict = request.get_json()
-    command = requestDict["command"]
+    ogcommand = requestDict["command"] + '\n'
 
-    # Send the command to the shell and wait for the prompt
-    shell.sendline(command)
-    shell.expect('\n')
-    #shell.expect(pexpect.TIMEOUT, timeout=2)
-    
-    # Get the output of the command as a string
-    output = shell.before.decode('utf-8')
-    
-    # Remove escape characters from the output string
-    output = re.sub(r'\x1b[^m]*m', '', output)
-    output = output.replace('\r\n', '<br>')
+    shell_process = subprocess.Popen('/bin/bash', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    return jsonify({"user": " ", "dir": " ", "command": " ", "output": output})
+    command = ogcommand.encode('utf-8')
+    print(command)
+
+    shell_process.stdin.write(command)
+    shell_process.stdin.flush()
+    
+    stdout, stderr = shell_process.communicate()
+    output = stdout.decode('utf-8').replace('\n', '<br>')
+    
+    return jsonify({"user": os.getlogin() + '@'+socket.gethostname(),"dir": os.getcwd(),"command": ogcommand,"output": output})
 
 @app.route("/show_data")
 def showData():
