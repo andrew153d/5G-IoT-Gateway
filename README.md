@@ -29,3 +29,10 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 * cd ~/5G-IoT-Gateway/website
 * python3 inerface.py
 * In a browser, go to ipaddress:5000
+
+## Issues
+* Currently bladeRF-cli does not work
+Installing bladerf from source overwrites bladerf-cli with an incompatible version
+
+* Ubuntu ppa bladerf_lib.h is out of date not including bladerf_feature keeping gr-bldaerf from compilng
+Need to install correct version while also installing python module
