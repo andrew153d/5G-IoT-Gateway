@@ -153,7 +153,7 @@ pip install .
 # -------- setup website autorun --------
 
 crontab -l | { cat; echo "@reboot cd ~/5G-IoT-Gateway && sleep 120 && cd website && python3 website.py"; } | crontab -
-sudo crontab -l | { cat; echo "@reboot sleep 120 && sudo nmcli d wifi hotspot ifname wlan0 ssid Gateway password qwertyuiop"; } | sudo crontab -
+sudo crontab -l | { cat; echo "@reboot sleep 120 && sudo nmcli d wifi hotspot ifname wlan0 ssid Gateway password password"; } | sudo crontab -
 
 # --------------------
 
