@@ -54,7 +54,7 @@ sudo apt install bladerf-fpga-hostedxa4 -y
 # -------- --------
 
 # -------- install GNU-radio blocks--------
-
+mkdir ~/gr
 cd ~/gr
 git clone git://git.osmocom.org/gr-iqbal
 cd gr-iqbal
