@@ -27,8 +27,11 @@ def extract_entry_num(csv_file_path):
             last_line = line
         return last_line[0]
 
-s = speedtest.Speedtest()
-
+try:
+    s = speedtest.Speedtest()
+except:
+    s = None
+    
 def TestUL():
     s.upload()
     return
@@ -39,22 +42,24 @@ def TestDL():
 
 def measureNetwork():
     print("Testing Network Speed")
-    servers = []
-    
-    DLThread = threading.Thread(target = TestDL)
-    ULThread = threading.Thread(target = TestUL)
-    s.get_servers(servers)
-    s.get_best_server()
-    start = time.time()
-    DLThread.start()
-    ULThread.start()
-    DLThread.join()
-    ULThread.join()
-    s.results.share()
-    results = s.results.dict()
-    end = time.time()
-    print('Execution Time: {}'.format(end-start))
-    return s.results.dict()
+    if(s != None):
+        servers = []
+        DLThread = threading.Thread(target = TestDL)
+        ULThread = threading.Thread(target = TestUL)
+        s.get_servers(servers)
+        s.get_best_server()
+        start = time.time()
+        DLThread.start()
+        ULThread.start()
+        DLThread.join()
+        ULThread.join()
+        s.results.share()
+        results = s.results.dict()
+        end = time.time()
+        print('Execution Time: {}'.format(end-start))
+        return s.results.dict()
+    else:
+        return {"ping": -1, "upload": -1, "download": -1}
 
 
 # button coming from log section of website
