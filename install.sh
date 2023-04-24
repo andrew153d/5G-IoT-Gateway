@@ -121,8 +121,8 @@ if [ "$Modem" = "Waveshare" ]; then
 elif [ "$Modem" = "Sixfab" ]; then
 # -------- setup for sixfab HAT--------
 #https://docs.sixfab.com/page/5g-lte-cellular-connectivity
-   sudo apt purge modemmanager -y
-   sudo apt purge network-manager -y
+   #sudo apt purge modemmanager -y
+   #sudo apt purge network-manager -y
 # -------- --------
 else
    echo "Incorrect 5G Modem configuration"
@@ -151,15 +151,7 @@ pip install .
 # -------- --------
 
 # -------- setup website autorun --------
-
-crontab -l | { cat; echo "@reboot cd ~/5G-IoT-Gateway && sleep 120 && cd website && python3 website.py"; } | crontab -
-sudo crontab -l | { cat; echo "@reboot sleep 120 && sudo nmcli d wifi hotspot ifname wlan0 ssid Gateway password password"; } | sudo crontab -
-
-# --------------------
-
-# -------- add desktop shortcut --------
 mkdir ~/.config/autostart
-cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/Desktop
 cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/.config/autostart/
 chmod +x ~/.config/autostart/Weebserver.desktop
 # -------- --------
