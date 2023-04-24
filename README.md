@@ -6,33 +6,28 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 [![5G Demo](media/screenshot_youtube.png)](https://youtu.be/Gw4qhBvPAFY)
 
 ## Directions
-* Use RPI Imager
-* Instal Ubuntu Desktop 22.04.1 LTS (64-Bit)
-* Write to SD Card
-* Install SD card, plug in, and follow prompts to start up the Pi
-* Go to 9 dots on bottom left > settings
-* Power > Screen Blank > Never
-* Users > Unlock > Enter Password > Automatic Login > Turn that on
-* Open the command line and enter the following
-* sudo apt-get install git
-* git clone https://github.com/andrew153d/5G-IoT-Gateway.git
-* cd 5G-IoT-Gateway
-* nano setup.sh
-* change the 5GModem variable to your modem > save and exit editor
-* chmod +x setup.sh
-* ./setup.sh
-* A purple box will come up, select lightdm and hit enter
-* The first item to install is vnc, you will need to type your pasword a few times here
-* After vnc installs, it will take ~30 minutes
+1. Use RPI Imager and install Ubuntu Desktop 22.04.1 LTS (64-Bit) to SD Card
+2. Install SD card, plug in, and follow prompts to start up the Pi
+3. Open the command line and enter the following
+4. sudo apt install git -y
+5. git clone https://github.com/andrew153d/5G-IoT-Gateway.git
+6. cd 5G-IoT-Gateway
+7. nano install.sh
+8. Change the 5GModem variable to your modem
+9. Change bladeRF installs for xa4 or xa9 versions
+10. chmod +x install.sh
+11.  ./setup.sh
+12. A purple box will come up, select lightdm and hit enter
+13. The first item to install is vnc, you will need to type your pasword a few times here
+14. After vnc installs, it will take ~30 minutes
+15. Go to 9 dots on bottom left > settings
+16. Power > Screen Blank > Never
+17. Users > Unlock > Enter Password > Automatic Login > Turn that on
 
-## To run the Website
-* cd ~/5G-IoT-Gateway/website
-* python3 inerface.py
-* In a browser, go to ipaddress:5000
 
 ## Issues
 * Currently bladeRF-cli does not work
-* Installing bladerf from source overwrites bladerf-cli with an incompatible version
+  * Installing bladerf from source overwrites bladerf-cli with an incompatible version
 
 * Ubuntu ppa bladerf_lib.h is out of date not including bladerf_feature keeping gr-bldaerf from compilng
-* Need to install correct version while also installing python module
+  * Need to install correct version while also installing python module
