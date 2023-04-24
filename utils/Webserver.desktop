@@ -1,7 +1,5 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
-Terminal=true
-Exec=./5G-IoT-Gateway/run.sh
-Name=Webserver
-Comment=Webserver
+Name=GNOME Terminal Startup
+Exec=gnome-terminal --full-screen -- /bin/bash -c "5G-IoT-Gateway/run.sh; exec bash -i"
+Comment=Start Webserver on startup

@@ -158,10 +158,10 @@ sudo crontab -l | { cat; echo "@reboot sleep 120 && sudo nmcli d wifi hotspot if
 # --------------------
 
 # -------- add desktop shortcut --------
+mkdir ~/.config/autostart
 cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/Desktop
-cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/.local/share/applications
-gio set ~/Desktop/Webserver.desktop metadata::trusted true
-chmod a+x ~/Desktop/Webserver.desktop
+cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/.config/autostart/
+chmod +x ~/.config/autostart/Weebserver.desktop
 # -------- --------
 
 
