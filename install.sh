@@ -112,11 +112,11 @@ if [ "$Modem" = "Waveshare" ]; then
 # ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
    cd ~/
    wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
+   sudo apt install python3-pip -y
    sudo pip install pyserial -y
    sudo apt install unzip -y
    unzip  SIM820X_RNDIS.zip
    sudo chmod 777 SIM820X_RNDIS.py
-   sudo python3 SIM820X_RNDIS.py
 # -------- --------
 elif [ "$Modem" = "Sixfab" ]; then
 # -------- setup for sixfab HAT--------
