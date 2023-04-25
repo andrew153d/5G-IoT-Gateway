@@ -1,7 +1,17 @@
-# Choose you 5G Modem here
-# Options are "Waveshare" or "Sixfab"
-Modem="Waveshare"
-#5GModem = "Waveshare"
+
+if [ "$1" = "Waveshare" ] || [ "$1" = "Sixfab" ]; then
+   echo "Configuring HAT for $1"
+else
+   echo "Invalid HAT manufacturer"
+   exit 1
+fi
+
+if [ "$2" = "xa4" ] || [ "$2" = "xa9" ]; then
+   echo "Configuring bladeRF for $2"
+else
+   echo "Invalid bladeRF configuration"
+   exit 1
+fi
 
 # -------- install vncserver --------
 #https://www.youtube.com/watch?v=3K1hUwxxYek
@@ -27,8 +37,15 @@ sudo add-apt-repository -y ppa:nuandllc/bladerf
 sudo apt update
 
 mkdir ~/blade
+
 sudo wget -P ~/blade/ https://www.nuand.com/fx3/bladeRF_fw_latest.img
-sudo wget -P ~/blade/ https://www.nuand.com/fpga/hostedxA4-latest.rbf
+
+if [ "$2" = "xa4" ]; then
+   sudo wget -P ~/blade/ https://www.nuand.com/fpga/hostedxA4-latest.rbf
+elif [ "$2" = "xa9" ]; then
+   sudo wget -P ~/blade/ https://www.nuand.com/fpga/hostedxA9-latest.rbf
+fi
+
 # -------- --------
 
 # -------- install GNU-radio and dependencies --------
@@ -50,7 +67,12 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 # -------- install bladerf(doesn't seem to install python bindings)--------
 sudo apt install -y bladerf libbladerf-dev bladerf-firmware-fx3 -y
-sudo apt install bladerf-fpga-hostedxa4 -y   
+if [ "$2" = "xa4" ]; then
+   sudo apt install bladerf-fpga-hostedxa4 -y 
+elif [ "$2" = "xa9" ]; then
+   sudo apt install bladerf-fpga-hostedxa9 -y 
+fi
+  
 # -------- --------
 
 # -------- install GNU-radio blocks--------
@@ -71,15 +93,6 @@ mkdir build && cd build
 cmake ..
 make -j$(nproc)
 sudo make install && sudo ldconfig
-
-cd ~/gr
-git clone https://github.com/Nuand/gr-bladeRF.git
-cd gr-bladeRF
-mkdir build
-cd build
-cmake ..
-make -j4
-sudo make install
 
 sudo apt update
 # -------- --------
@@ -106,28 +119,10 @@ cd ~/
 # https://ubuntu.com/tutorials/gpio-on-raspberry-pi#3-basic-gpio-example
 sudo apt install python3-lgpio -y
 
-if [ "$Modem" = "Waveshare" ]; then
-# -------- get drivers for waveshare HAT--------
-# ---- General tutorial ---- https://www.waveshare.com/wiki/SIM8200EA-M2_5G_HAT
-# ---- 5G HAT setup ---- https://www.waveshare.com/wiki/SIM820X_RNDIS_Dial-Up
-   cd ~/
-   wget -P ~/ https://www.waveshare.com/w/upload/1/1e/SIM820X_RNDIS.zip
-   sudo apt install python3-pip -y
-   sudo pip install pyserial -y
-   sudo apt install unzip -y
-   unzip  SIM820X_RNDIS.zip
-   sudo chmod 777 SIM820X_RNDIS.py
-# -------- --------
-elif [ "$Modem" = "Sixfab" ]; then
-# -------- setup for sixfab HAT--------
-#https://docs.sixfab.com/page/5g-lte-cellular-connectivity
-   #sudo apt purge modemmanager -y
-   #sudo apt purge network-manager -y
-   echo "nothing"
-# -------- --------
-else
-   echo "Incorrect 5G Modem configuration"
-   exit 1
+if [ "$1" = "Waveshare" ]; then
+   cp ~/5G-IoT-Gateway/utils/StartNetwork_Waveshare.py ~/StartNewtork.py
+elif [ "$2" = "Sixfab" ]; then
+   cp ~/5G-IoT-Gateway/utils/StartNetwork_Waveshare.py ~/StartNewtork.py
 fi
 
 
@@ -154,7 +149,7 @@ pip install .
 # -------- setup website autorun --------
 mkdir ~/.config/autostart
 cp ~/5G-IoT-Gateway/utils/Webserver.desktop ~/.config/autostart/
-chmod +x ~/.config/autostart/Weebserver.desktop
+chmod +x ~/.config/autostart/Webserver.desktop
 # -------- --------
 
 

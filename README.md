@@ -12,16 +12,13 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 4. sudo apt install git -y
 5. git clone https://github.com/andrew153d/5G-IoT-Gateway.git
 6. cd 5G-IoT-Gateway
-7. nano install.sh
-8. Change the 5GModem variable to your modem
-9. Change bladeRF installs for xa4 or xa9 versions
-10. chmod +x install.sh
-11.  ./setup.sh
-12. A purple box will come up, select lightdm and hit enter
-13. The first item to install is vnc, you will need to type your pasword a few times here
-14. After vnc installs, it will take ~30 minutes
-15. Go to 9 dots on bottom left > settings
-16. Power > Screen Blank > Never
+7. chmod +x install.sh
+8. ./install.sh Waveshare xa4 or ./install.sh Sixfab xa9
+9. A purple box will come up, select lightdm and hit enter
+10. The first item to install is vnc, you will need to type your pasword a few times here
+11. After vnc installs, it will take ~30 minutes
+12. Go to 9 dots on bottom left > settings
+13. Power > Screen Blank > Never
 17. Users > Unlock > Enter Password > Automatic Login > Turn that on
 
 
