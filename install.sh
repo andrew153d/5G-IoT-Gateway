@@ -123,6 +123,7 @@ elif [ "$Modem" = "Sixfab" ]; then
 #https://docs.sixfab.com/page/5g-lte-cellular-connectivity
    #sudo apt purge modemmanager -y
    #sudo apt purge network-manager -y
+   echo "nothing"
 # -------- --------
 else
    echo "Incorrect 5G Modem configuration"
