@@ -18,13 +18,18 @@ fi
 cd ~/
 sudo apt update
 sudo apt install lightdm -y
-sudo apt install x11vnc -y
-sudo cp 5G-IoT-Gateway/utils/x11vnc.service /lib/systemd/system/
+if command -v x11vnc &>/dev/null; then
+  echo "x11vnc is installed"
+else
+   sudo apt install x11vnc -y
+   sudo cp 5G-IoT-Gateway/utils/x11vnc.service /lib/systemd/system/
 
-systemctl daemon-reload
-systemctl enable x11vnc.service
-systemctl start x11vnc.service
-systemctl status x11vnc.service
+   systemctl daemon-reload
+   systemctl enable x11vnc.service
+   systemctl start x11vnc.service
+   systemctl status x11vnc.service
+fi
+
 # -------- --------
 
 
@@ -118,13 +123,15 @@ cd ~/
 # -------- add GPIO Control --------
 # https://ubuntu.com/tutorials/gpio-on-raspberry-pi#3-basic-gpio-example
 sudo apt install python3-lgpio -y
+# -------- --------
 
+# -------- install start up script for modems--------
 if [ "$1" = "Waveshare" ]; then
    cp ~/5G-IoT-Gateway/utils/StartNetwork_Waveshare.py ~/StartNewtork.py
 elif [ "$2" = "Sixfab" ]; then
-   cp ~/5G-IoT-Gateway/utils/StartNetwork_Waveshare.py ~/StartNewtork.py
+   cp ~/5G-IoT-Gateway/utils/StartNetwork_Sixfab.py ~/StartNewtork.py
 fi
-
+# -------- --------
 
 # -------- minicom: used for connection with bladerf
 # net-tools: give access to ifconfig
