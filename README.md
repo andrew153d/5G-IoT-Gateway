@@ -26,5 +26,5 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 * Currently bladeRF-cli does not work
   * Installing bladerf from source overwrites bladerf-cli with an incompatible version
 
-* Ubuntu ppa bladerf_lib.h is out of date not including bladerf_feature keeping gr-bladerf from compilng
+* Ubuntu ppa bladerf_lib.h is out of date not including bladerf_feature keeping gr-bladerf from compiling
   * Need to install correct version while also installing python module
