@@ -1,3 +1,14 @@
+branch="main"
+# Change directory to the local repository
+cd ~/5G-IoT-Gateway
+# Check if the local branch is behind the remote branch
+git fetch origin $branch
+if [ $(git rev-parse HEAD) != $(git rev-parse origin/$branch) ]; then
+    echo "Software out of date, "git pull" to update"
+else
+    echo "Software up to date"
+fi
+
 if [ "$1" = "--noModem" ]; then
     echo "Starting without Modem"
 else
