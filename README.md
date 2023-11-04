@@ -13,7 +13,7 @@ I'm no youtuber but here is a video of the current state of the device as of Mar
 5. git clone https://github.com/andrew153d/5G-IoT-Gateway.git
 6. cd 5G-IoT-Gateway
 7. chmod +x install.sh
-8. ./install.sh Waveshare xa4 or ./install.sh Sixfab xa9
+8. ./install.sh Waveshare xa4 or ./install.sh Sixfab xa9 
 9. A purple box will come up, select lightdm and hit enter
 10. The first item to install is vnc, you will need to type your pasword a few times here
 11. After vnc installs, it will take ~30 minutes
